@@ -1,0 +1,12 @@
+{
+  "source_model": "qvac/qvac-genesis-iii-qwen3-1.7b-combined",
+  "source_revision": "39a371617fabe508eb793c9b7832ec3496d4e96e",
+  "destination_model": "yifanouyang/Meridian-Text-1.7B",
+  "weights": {
+    "model.safetensors": {
+      "size": 3441185576,
+      "sha256": "9d82a616936da8c0fed035fae06f90db9dd00cae63d73efd71a41b3e7b954f8b"
+    }
+  },
+  "verification": "Hugging Face LFS metadata matched; no inference performed"
+}

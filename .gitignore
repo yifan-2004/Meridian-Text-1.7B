@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+weights/
+*.safetensors
+*.bin
+research/evaluation/vendor/
+research/evaluation/outputs/
+research/evaluation/logs/*
+!research/evaluation/logs/.gitignore

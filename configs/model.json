@@ -1,0 +1,8 @@
+{
+  "distribution": "Meridian Text 1.7B",
+  "model_id": "yifanouyang/Meridian-Text-1.7B",
+  "architecture": "Qwen3ForCausalLM",
+  "training_context_tokens": 4096,
+  "instruction_tuned": false,
+  "weight_modifications": "none"
+}

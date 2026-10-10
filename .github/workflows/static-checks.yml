@@ -1,0 +1,33 @@
+name: Static checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Parse Python, JSON, and validate manifest
+        run: |
+          python - <<'PY'
+          import ast, json, pathlib, re
+          root = pathlib.Path('.')
+          for path in root.rglob('*.py'):
+              ast.parse(path.read_text(), filename=str(path))
+          for path in root.rglob('*.json'):
+              json.loads(path.read_text())
+          data = json.loads(pathlib.Path('docs/weights-manifest.json').read_text())
+          weight = data['weights']['model.safetensors']
+          assert weight['size'] == 3441185576
+          assert weight['sha256'] == '9d82a616936da8c0fed035fae06f90db9dd00cae63d73efd71a41b3e7b954f8b'
+          assert data['destination_model'] == 'yifanouyang/Meridian-Text-1.7B'
+          assert re.fullmatch(r'[0-9a-f]{40}', data['source_revision'])
+          print('Source syntax and manifest checked; no model inference performed')
+          PY
+      - name: Check lightweight CLI and shell syntax
+        run: |
+          python scripts/complete.py --help
+          bash -n research/evaluation/setup.sh research/evaluation/run.sh research/evaluation/run.sbatch
