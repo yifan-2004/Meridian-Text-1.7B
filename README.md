@@ -46,4 +46,4 @@ python -m unittest discover -s tests -v
 
 ## License
 
-[Apache-2.0](LICENSE) · [Source](https://github.com/tether-ai-research/qvac-genesis-III) · [Model reference](https://huggingface.co/qvac/qvac-genesis-iii-qwen3-1.7b-combined)
+[Apache-2.0](LICENSE) 
