@@ -8,3 +8,4 @@ research/evaluation/vendor/
 research/evaluation/outputs/
 research/evaluation/logs/*
 !research/evaluation/logs/.gitignore
+results/

@@ -26,23 +26,17 @@ def strip_thinking_content(text):
     if not text:
         return text
 
-    found_end_marker = False
-    for marker in THINKING_END_MARKERS:
-        index = text.lower().rfind(marker.lower())
-        if index != -1:
-            found_end_marker = True
-            after_marker = text[index + len(marker) :].strip()
-            if after_marker:
-                text = after_marker
-                break
-
-    if not found_end_marker:
-        lowered = text.lower()
-        if any(
-            lowered.startswith(marker.lower())
-            for marker in THINKING_START_MARKERS
-        ):
-            text = "NO_ANSWER"
+    # Marker families may be mixed. Use the latest closing marker, not the
+    # first marker family in this list, and never send empty reasoning to judge.
+    lowered = text.lower()
+    endings = [(lowered.rfind(marker.lower()), len(marker))
+               for marker in THINKING_END_MARKERS]
+    index, marker_length = max(endings)
+    if index >= 0:
+        text = text[index + marker_length:].strip() or "NO_ANSWER"
+    lowered = text.lstrip().lower()
+    if any(lowered.startswith(marker.lower()) for marker in THINKING_START_MARKERS):
+        text = "NO_ANSWER"
 
     if len(text) > MAX_PREDICTION_CHARS:
         text = text[:MAX_PREDICTION_CHARS]
@@ -76,6 +70,8 @@ def normalize_answer(answer):
 def answers_match(extracted, gold):
     extracted = normalize_answer(extracted)
     gold = normalize_answer(gold)
+    if not extracted or not gold:
+        return False
     if extracted == gold:
         return True
     if (
@@ -116,7 +112,7 @@ def judge_answer_extraction_postprocess(
         gold = str(gold).strip()
 
         extracted = extract_answer(response).strip()
-        if extracted == "NO_ANSWER":
+        if not extracted or extracted == "NO_ANSWER":
             is_correct = False
             no_answer_count += 1
         elif extracted == "MULTIPLE_ANSWERS":

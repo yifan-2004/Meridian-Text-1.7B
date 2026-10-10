@@ -30,6 +30,8 @@ jobs:
       - name: Check lightweight CLI and shell syntax
         run: |
           python scripts/complete.py --help
+          python scripts/batch_complete.py --help
+          python -m unittest discover -s tests -v
           for script in research/evaluation/setup.sh research/evaluation/run.sh research/evaluation/run.sbatch; do
             bash -n "$script"
           done
