@@ -30,4 +30,6 @@ jobs:
       - name: Check lightweight CLI and shell syntax
         run: |
           python scripts/complete.py --help
-          bash -n research/evaluation/setup.sh research/evaluation/run.sh research/evaluation/run.sbatch
+          for script in research/evaluation/setup.sh research/evaluation/run.sh research/evaluation/run.sbatch; do
+            bash -n "$script"
+          done
