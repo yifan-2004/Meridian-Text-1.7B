@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="930" viewBox="0 0 1800 930" role="img" aria-labelledby="title desc">
+<title id="title">Meridian Text 1.7B</title><desc id="desc">Original Qwen3-style causal decoder architecture and the new full-parameter local domain adaptation workflow.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#536579"/></marker></defs>
+<rect width="1800" height="930" fill="#ffffff"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172b42}.title{font-size:36px;font-weight:700}.eyebrow{font-size:15px;letter-spacing:2px;fill:#657c92}.panel{font-size:20px;font-weight:700}.label{font-size:19px;font-weight:600}.small{font-size:15px;fill:#52687e}.foot{font-size:14px;fill:#64768a}.wire{fill:none;stroke:#536579;stroke-width:2}</style>
+<text x="55" y="40" class="eyebrow" text-anchor="start">MODEL OVERVIEW  /  REPRODUCIBLE LOCAL WORKFLOW</text>
+<text x="55" y="94" class="title" text-anchor="start">Meridian Text 1.7B</text>
+<text x="55" y="127" class="small" text-anchor="start">English STEM causal language model  •  Qwen3 architecture  •  4096-token training context</text>
+<rect x="35" y="160" width="1730" height="395" rx="16" fill="#fbfcfe" stroke="#dfe6ee"/>
+<text x="60" y="194" class="panel" text-anchor="start">(a) Model architecture</text>
+<rect x="35" y="580" width="1730" height="260" rx="16" fill="#fbfcfe" stroke="#dfe6ee"/>
+<text x="60" y="614" class="panel" text-anchor="start">(b) Local adaptation recipe • independent of the original pretraining</text>
+<path d="M270,355 L315,355" class="wire"/>
+<polygon points="315.0,355.0 306.0,351.0 306.0,359.0" fill="#536579"/>
+<path d="M530,355 L575,355" class="wire"/>
+<polygon points="575.0,355.0 566.0,351.0 566.0,359.0" fill="#536579"/>
+<path d="M790,355 L835,355" class="wire"/>
+<polygon points="835.0,355.0 826.0,351.0 826.0,359.0" fill="#536579"/>
+<path d="M1230,355 L1275,355" class="wire"/>
+<polygon points="1275.0,355.0 1266.0,351.0 1266.0,359.0" fill="#536579"/>
+<path d="M1490,355 L1535,355" class="wire"/>
+<polygon points="1535.0,355.0 1526.0,351.0 1526.0,359.0" fill="#536579"/>
+<path d="M1038,397 L1038,410" class="wire"/>
+<polygon points="1038.0,410.0 1034.0,401.0 1042.0,401.0" fill="#536579"/>
+<path d="M360,710 L400,710" class="wire"/>
+<polygon points="400.0,710.0 391.0,706.0 391.0,714.0" fill="#536579"/>
+<path d="M705,710 L745,710" class="wire"/>
+<polygon points="745.0,710.0 736.0,706.0 736.0,714.0" fill="#536579"/>
+<path d="M1050,710 L1090,710" class="wire"/>
+<polygon points="1090.0,710.0 1081.0,706.0 1081.0,714.0" fill="#536579"/>
+<path d="M1395,710 L1435,710" class="wire"/>
+<polygon points="1435.0,710.0 1426.0,706.0 1426.0,714.0" fill="#536579"/>
+<rect x="65" y="305" width="205" height="100" rx="10" fill="#edf3fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="167.5" y="334" class="label" text-anchor="middle">Input document</text>
+<text x="167.5" y="359" class="small" text-anchor="middle">English text</text>
+<rect x="325" y="305" width="205" height="100" rx="10" fill="#edf3fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="427.5" y="334" class="label" text-anchor="middle">Qwen3 tokenizer</text>
+<text x="427.5" y="359" class="small" text-anchor="middle">Token IDs + EOS</text>
+<rect x="585" y="305" width="205" height="100" rx="10" fill="#edf3fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="687.5" y="334" class="label" text-anchor="middle">Token embeddings</text>
+<text x="687.5" y="359" class="small" text-anchor="middle">Hidden size 2048</text>
+<rect x="845" y="230" width="385" height="265" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1037.5" y="259" class="label" text-anchor="middle">Causal decoder × 28</text>
+<text x="1037.5" y="284" class="small" text-anchor="middle">16 query / 8 KV heads</text>
+<text x="1037.5" y="309" class="small" text-anchor="middle">RoPE + causal attention</text>
+<rect x="895" y="335" width="285" height="60" rx="10" fill="#fff" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1037.5" y="364" class="label" text-anchor="middle">RMSNorm → GQA</text>
+<rect x="895" y="420" width="285" height="60" rx="10" fill="#fff" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1037.5" y="449" class="label" text-anchor="middle">RMSNorm → SwiGLU</text>
+<rect x="1285" y="305" width="205" height="100" rx="10" fill="#edf3fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1387.5" y="334" class="label" text-anchor="middle">Norm + LM head</text>
+<text x="1387.5" y="359" class="small" text-anchor="middle">Next-token logits</text>
+<rect x="1545" y="305" width="190" height="100" rx="10" fill="#edf3fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1640.0" y="334" class="label" text-anchor="middle">Continuation</text>
+<text x="1640.0" y="359" class="small" text-anchor="middle">Decoded text</text>
+<rect x="65" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="212.5" y="684" class="label" text-anchor="middle">Document-disjoint data</text>
+<text x="212.5" y="709" class="small" text-anchor="middle">Train / validation JSONL</text>
+<rect x="410" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="557.5" y="684" class="label" text-anchor="middle">Tokenize per document</text>
+<text x="557.5" y="709" class="small" text-anchor="middle">EOS • shifted causal labels</text>
+<rect x="755" y="655" width="295" height="112" rx="10" fill="#eeeafa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="902.5" y="684" class="label" text-anchor="middle">Adapt all parameters</text>
+<text x="902.5" y="709" class="small" text-anchor="middle">FP32 AdamW • clipped grads</text>
+<rect x="1100" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1247.5" y="684" class="label" text-anchor="middle">Held-out validation</text>
+<text x="1247.5" y="709" class="small" text-anchor="middle">Token-weighted loss</text>
+<rect x="1445" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1592.5" y="684" class="label" text-anchor="middle">Export checkpoint</text>
+<text x="1592.5" y="709" class="small" text-anchor="middle">Model + tokenizer + config</text>
+<text x="850" y="528" class="small" text-anchor="start">Residual connections around attention and feed-forward sublayers (schematic).</text>
+<text x="65" y="808" class="small" text-anchor="start">Original pretraining: FA + OL synthetic STEM corpus → random initialization → distributed next-token training (see sourced recipe).</text>
+<text x="55" y="883" class="foot" text-anchor="start">Architecture: original randomly initialized and pretrained Qwen3-style base. Local recipe: next-token domain adaptation; no chat alignment implied.</text>
+<text x="55" y="908" class="foot" text-anchor="start">Original diagram by Yifan Ouyang. Base architecture attribution and training scope: docs/TRAINING.md.</text>
+</svg>

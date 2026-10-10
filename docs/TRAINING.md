@@ -1,5 +1,7 @@
 # Train Meridian Text 1.7B
 
+![Model architecture and training workflow](../assets/model-overview.svg)
+
 Two separate workflows: the upstream checkpoint's pretraining, and this toolkit's runnable downstream domain adaptation. Mirrored weights remain unchanged.
 
 ## Original pretraining (reported by Tether AI Research)

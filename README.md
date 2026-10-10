@@ -1,5 +1,7 @@
 # Meridian Text 1.7B
 
+![Model architecture and training workflow](assets/model-overview.svg)
+
 A local-first research toolkit for English STEM text completion: downloadable weights, resumable JSONL jobs, and the original evaluation code.
 
 [Weights](https://huggingface.co/yifanouyang/Meridian-Text-1.7B) · [Local setup](docs/LOCAL_USE.md) · [Model & results](docs/MODEL.md) · [Source & license](docs/PROVENANCE.md)
