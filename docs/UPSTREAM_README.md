@@ -75,11 +75,11 @@ uncontrolled reference:
 
 ![Genesis III Combined versus Cosmopedia-v2 (7 epochs) and Cosmo-1B on
 ARC-Easy, ARC-Challenge, GPQA Diamond, and MMLU STEM accuracy and valid
-answer rate](assets/genesis_combined_comparison.png)
+answer rate](../research/assets/genesis_combined_comparison.png)
 
 Additional ablations: [Option-Level versus Failure
-Analysis](assets/genesis_split_ablation.png) and [cross-architecture
-transfer](assets/genesis_cross_architecture.png).
+Analysis](../research/assets/genesis_split_ablation.png) and [cross-architecture
+transfer](../research/assets/genesis_cross_architecture.png).
 
 ## 📊 Evaluation: generation-first, LLM-as-a-parser
 
@@ -91,9 +91,9 @@ text. The parsed answer is then scored against the gold label:
 
 ![Genesis III evaluation framework: the three candidate checkpoints answer
 each question in free form; CompassJudger-2-32B extracts the final answer,
-which is compared with the gold answer to compute accuracy](assets/eval.png)
+which is compared with the gold answer to compute accuracy](../research/assets/eval.png)
 
-The [`evaluation`](evaluation) directory contains our complete implementation
+The [`evaluation`](../research/evaluation) directory contains our complete implementation
 of this protocol: official OpenCompass plus a small local extension, covering
 ARC-Easy, ARC-Challenge, GPQA Diamond, and 19 MMLU STEM domains. Candidate
 generation is greedy; the parser runs at temperature 0.01. The shipped
@@ -126,7 +126,7 @@ Transformers can replace vLLM for both candidate generation and judging:
 ./run.sh --backend transformers
 ```
 
-See [`evaluation/README.md`](evaluation/README.md) for resource requirements,
+See [`evaluation/README.md`](../research/evaluation/README.md) for resource requirements,
 smoke tests, output files, and configuration details.
 
 ## 📖 Citation
@@ -153,7 +153,7 @@ Code and data are licensed separately.
 
 | What | Where | License |
 | ---- | ----- | ------- |
-| This repository, including the evaluation suite | [LICENSE](LICENSE) | [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0) |
+| This repository, including the evaluation suite | [LICENSE](../LICENSE) | [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0) |
 | Genesis III dataset | [qvac/GenesisIII](https://huggingface.co/datasets/qvac/GenesisIII) | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) |
 
 Apache-2.0 applies to the code in this repository: evaluation code, configs,
