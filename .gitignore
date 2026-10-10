@@ -9,3 +9,4 @@ research/evaluation/outputs/
 research/evaluation/logs/*
 !research/evaluation/logs/.gitignore
 results/
+checkpoints/

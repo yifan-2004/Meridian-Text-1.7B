@@ -35,7 +35,7 @@ Batch jobs process one prompt at a time to limit memory. This is text continuati
 
 ## Model and training
 
-The checkpoint is **QVAC Genesis III Combined**, trained by **Tether AI Research**; the mirrored weights are unchanged. Yifan Ouyang maintains these launchers, tests, and documentation. It is a 1.7B Qwen3 base model, without chat or instruction tuning. Further training is described briefly in [training notes](docs/TRAINING.md); this release performs no training.
+The checkpoint is **QVAC Genesis III Combined**, trained by **Tether AI Research**; the mirrored weights are unchanged. Yifan Ouyang maintains these launchers, tests, and documentation. It is a 1.7B Qwen3 base model, without chat or instruction tuning. See [pretraining stages and the runnable domain-adaptation recipe](docs/TRAINING.md). Published weights remain unchanged.
 
 The [original paper](https://arxiv.org/abs/2609.19513) reports ARC-Easy **51.85%**, ARC-Challenge **42.71%**, GPQA Diamond **22.72%**, and MMLU STEM **30.19%**. These are upstream results, not measurements of the modified evaluation code. Full protocol and caveats: [model reference](docs/MODEL.md).
 
