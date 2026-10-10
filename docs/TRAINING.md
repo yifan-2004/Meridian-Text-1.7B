@@ -2,20 +2,7 @@
 
 ![Model architecture and training workflow](../assets/model-overview.svg)
 
-Two separate workflows: the upstream checkpoint's pretraining, and this toolkit's runnable downstream domain adaptation. Mirrored weights remain unchanged.
-
-## Original pretraining (reported by Tether AI Research)
-
-| Stage | Configuration |
-| --- | --- |
-| Initialize | Random Qwen3-1.7B architecture; not continued Qwen pretrained weights |
-| Data | Genesis III Failure Analysis + Option-Level, 191.43B tokens |
-| Input | Packed 4,096-token sequences; attention resets at document boundaries |
-| Optimize | AdamW, BF16, batch 2,048 sequences; cosine LR 2e-4 → 2e-5, 10% warmup |
-| Run | One epoch, 22,819 steps; 64 × H100 80 GB, Megatron-Core/Bridge |
-| Evaluate | ARC, GPQA Diamond, MMLU STEM using the paper's answer-parser protocol |
-
-Source: [original model card](UPSTREAM_MODEL_CARD.md#-training) and [paper](https://arxiv.org/abs/2609.19513). This toolkit does not reproduce that distributed pretraining pipeline. The corpus has a separate CC-BY-NC 4.0 license.
+Adapt a checkpoint to your own text and save it separately. Released weights remain unchanged.
 
 ## Domain adaptation with your own text
 
@@ -52,3 +39,5 @@ python tests/smoke_tiny_training.py
 ```
 
 The optional integration test creates random tiny Qwen3 weights locally, performs a real CPU optimizer step and validation, saves and reloads the checkpoint. It downloads nothing and does not train the 1.7B model.
+
+[Training reference](UPSTREAM_MODEL_CARD.md#-training) · [Paper](https://arxiv.org/abs/2609.19513)

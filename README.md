@@ -2,51 +2,48 @@
 
 ![Model architecture and training workflow](assets/model-overview.svg)
 
-A local-first research toolkit for English STEM text completion: downloadable weights, resumable JSONL jobs, and the original evaluation code.
+An English STEM text-completion toolkit with a **1.7B Qwen3 base model**, local inference, resumable JSONL jobs and domain-adaptation training. Text continuation; no chat or instruction tuning.
 
-[Weights](https://huggingface.co/yifanouyang/Meridian-Text-1.7B) · [Local setup](docs/LOCAL_USE.md) · [Model & results](docs/MODEL.md) · [Source & license](docs/PROVENANCE.md)
+[Weights](https://huggingface.co/yifanouyang/Meridian-Text-1.7B) · [Local / offline setup](docs/LOCAL_USE.md) · [Training](docs/TRAINING.md) · [Model details](docs/MODEL.md)
 
 ## Quick start
 
-Python 3.10+. First use downloads about 3.46 GB. CPU uses FP32 and needs substantially more RAM than the checkpoint size.
+Python 3.10+. First use downloads about 3.44 GB; CPU FP32 needs substantially more RAM than the checkpoint size.
 
 ```bash
 git clone https://github.com/yifan-2004/Meridian-Text-1.7B.git
 cd Meridian-Text-1.7B
 python -m venv .venv
-source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
+source .venv/bin/activate
+pip install -r requirements.txt
 python scripts/complete.py --device cpu --prompt "Photosynthesis is the process by which"
 ```
 
-Use `--device cuda` on NVIDIA GPUs, or `--device mps` on supported Apple Silicon Macs. [Hardware, offline use, troubleshooting](docs/LOCAL_USE.md).
+Use `--device cuda` for NVIDIA GPUs or `--device mps` for supported Apple Silicon Macs. Hardware support and offline loading are covered in the [setup guide](docs/LOCAL_USE.md).
 
-## What this distribution adds
-
-- **Resumable completion jobs:** JSONL in/out, duplicate-ID checks, input/settings validation, and a flushed result after each item.
-- **Local execution controls:** CPU/CUDA/MPS selection, precision checks, offline loading, and the 4,096-token training-context guard.
-- **Evaluation fixes:** empty-answer scoring and reasoning-marker handling, covered by offline regression tests.
+## Resume a batch
 
 ```bash
 python scripts/batch_complete.py --input examples/batch.jsonl --output results/completions.jsonl
-# Continue an interrupted run with the same input and settings:
 python scripts/batch_complete.py --input examples/batch.jsonl --output results/completions.jsonl --resume
 ```
 
-Batch jobs process one prompt at a time to limit memory. This is text continuation, not a chat interface. `--help` never loads weights.
+Each result is flushed to disk. Duplicate IDs and mismatched resume settings are rejected; jobs process one prompt at a time.
 
-## Model and training
+## Train on your text
 
-The checkpoint is **QVAC Genesis III Combined**, trained by **Tether AI Research**; the mirrored weights are unchanged. Yifan Ouyang maintains these launchers, tests, and documentation. It is a 1.7B Qwen3 base model, without chat or instruction tuning. See [pretraining stages and the runnable domain-adaptation recipe](docs/TRAINING.md). Published weights remain unchanged.
+```bash
+python scripts/train.py --device cuda --train examples/training/train.jsonl --validation examples/training/validation.jsonl --output checkpoints/meridian-domain --max-length 512 --batch-size 1 --max-steps 20
+```
 
-The [original paper](https://arxiv.org/abs/2609.19513) reports ARC-Easy **51.85%**, ARC-Challenge **42.71%**, GPQA Diamond **22.72%**, and MMLU STEM **30.19%**. These are upstream results, not measurements of the modified evaluation code. Full protocol and caveats: [model reference](docs/MODEL.md).
+Full-parameter FP32 training requires considerably more memory than inference. See the [recipe](docs/TRAINING.md) for document splits, loss masking and checkpoint loading. Training was smoke-tested on a tiny local Qwen3; the released 1.7B weights are unchanged and have not been trained or benchmarked here.
 
-## Verification and license
+Offline checks cover batch handling, training inputs and answer postprocessing:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-Unit tests use fake completions and pure postprocessing; they do not demonstrate model quality. Full checkpoint inference and paper evaluation have not been reproduced here.
+## License
 
-Code and weights: Apache-2.0. Keep [LICENSE](LICENSE), [model license](docs/MODEL_LICENSE), and [attributions](docs/MODEL_ATTRIBUTIONS.md). The upstream Genesis III dataset has a separate CC-BY-NC 4.0 license and is not redistributed. [Weight hashes](docs/weights-manifest.json).
+[Apache-2.0](LICENSE) · [Source](https://github.com/tether-ai-research/qvac-genesis-III) · [Model reference](https://huggingface.co/qvac/qvac-genesis-iii-qwen3-1.7b-combined)
